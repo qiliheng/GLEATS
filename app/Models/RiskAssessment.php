@@ -9,10 +9,20 @@ class RiskAssessment extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['assessment_date', 'risk_score', 'mitigation_status', 'project_id'];
+    protected $fillable = [
+        'assessment_date',
+        'risk_score',
+        'mitigation_status',
+        'project_id',
+        'form_data',  
+    ];
 
-    public function risks()
+    protected $casts = [
+        'form_data' => 'array',
+    ];
+
+    public function project()
     {
-        return $this->hasMany(Risk::class);
+        return $this->belongsTo(Project::class);
     }
 }

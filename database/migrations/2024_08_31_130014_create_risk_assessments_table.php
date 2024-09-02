@@ -17,8 +17,10 @@ return new class extends Migration
             $table->integer('risk_score');
             $table->string('mitigation_status');
             $table->foreignId('project_id')->constrained()->onDelete('cascade');
+            $table->json('form_data'); // Add this line to store the JSON object
             $table->timestamps();
         });
+        
         
     }
 

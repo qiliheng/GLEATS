@@ -14,11 +14,7 @@ class RiskAssessmentController extends Controller
             'risk_score' => 'required|integer',
             'mitigation_status' => 'required|string',
             'project_id' => 'required|exists:projects,id',
-            'risks' => 'required|array',
-            'risks.*.risk_type' => 'required|string',
-            'risks.*.description' => 'required|string',
-            'risks.*.level' => 'required|string',
-            'risks.*.mitigation_approach' => 'required|string',
+            'form_data' => 'required|json', 
         ]);
 
         $riskAssessment = RiskAssessment::create([
@@ -26,11 +22,8 @@ class RiskAssessmentController extends Controller
             'risk_score' => $validatedData['risk_score'],
             'mitigation_status' => $validatedData['mitigation_status'],
             'project_id' => $validatedData['project_id'],
+            'form_data' => $validatedData['form_data'], 
         ]);
-
-        foreach ($validatedData['risks'] as $riskData) {
-            $riskAssessment->risks()->create($riskData);
-        }
 
         return response()->json(['message' => 'Risk Assessment created successfully', 'data' => $riskAssessment], 201);
     }

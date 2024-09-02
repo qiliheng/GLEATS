@@ -19,9 +19,6 @@ class DatabaseSeeder extends Seeder
             ProjectSeeder::class,
             SWMSSeeder::class,
             RiskAssessmentSeeder::class,
-            RiskSeeder::class,
-            MitigationSeeder::class,
-            AuditSeeder::class,
         ]);
     }
 }
